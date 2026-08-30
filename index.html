@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>J&T Cargo 5th Anniversary</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --jt-green: #00A651;
+      --jt-green-hover: #008a43;
+      --text-dark: #1A202C;
+      --text-gray: #64748B;
+      --bg-color: #FAFAFA;
+    }
+
+    html, body {
+      width: 100% !important;
+      min-height: 100vh !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      background-color: var(--bg-color) !important;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    * { box-sizing: border-box; }
+
+    .app-wrapper {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      min-height: 100vh;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .section-container {
+      display: none;
+      padding: 16px 20px;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    .section-container.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .poster-img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      margin-bottom: 24px;
+    }
+    .instruction-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    
+    .header-back {
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+    }
+    .btn-back {
+      background: none;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-gray);
+    }
+    .form-header-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .form-header-subtitle {
+      font-size: 14px;
+      color: var(--text-gray);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .form-group input {
+      width: 100%;
+      height: 52px;
+      padding: 0 16px;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      outline: none;
+      transition: all 0.2s;
+      background: #FFFFFF;
+      color: var(--text-dark);
+    }
+    .form-group input::placeholder {
+      color: #94A3B8;
+      font-weight: 400;
+    }
+    .form-group input:focus {
+      border-color: var(--jt-green);
+      box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1);
+    }
+
+    .btn-primary {
+      width: 100%;
+      height: 54px;
+      background: var(--jt-green);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    .btn-primary:active {
+      transform: scale(0.98);
+      background: var(--jt-green-hover);
+    }
+    .btn-primary:disabled {
+      background: #CBD5E1;
+      cursor: not-allowed;
+    }
+
+    .alert-error {
+      display: none;
+      background: #FEF2F2;
+      color: #DC2626;
+      border: 1px solid #FCA5A5;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .success-box {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .success-icon { font-size: 60px; margin-bottom: 16px; }
+    .success-title { font-size: 22px; font-weight: 800; color: var(--text-dark); margin-bottom: 10px; }
+    .success-desc { font-size: 15px; color: var(--text-gray); line-height: 1.5; }
+    
+    .footer {
+      text-align: center;
+      padding: 20px 0;
+      font-size: 12px;
+      color: #CBD5E1;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-wrapper">
+    
+    <div id="landingSection" class="section-container active">
+      <img class="poster-img" src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/creative-business-poster-design-template-cc567da44d08d151c7b10dda2844ca97_screen.jpg?ts=1737502680" alt="Poster Event J&T">
+      
+      <div class="instruction-text">
+        Peserta wajib mengisi form registrasi di bawah ini
+      </div>
+      
+      <button type="button" id="btnGoToForm" class="btn-primary">
+        Lanjut ke Registrasi &rarr;
+      </button>
+    </div>
+
+    <div id="formSection" class="section-container">
+      <div class="header-back">
+        <button type="button" id="btnBackToLanding" class="btn-back">
+          &larr; Kembali
+        </button>
+      </div>
+
+      <div class="form-header-title">Registrasi Kehadiran</div>
+      <div class="form-header-subtitle">Silakan lengkapi data berikut untuk mendapatkan QR Code undangan.</div>
+
+      <div id="errorBox" class="alert-error"></div>
+
+      <form id="registrationForm">
+        <div class="form-group">
+          <label for="name">Nama Lengkap</label>
+          <input type="text" id="name" placeholder="Masukkan nama lengkap" required autocomplete="name">
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Alamat Email</label>
+          <input type="email" id="email" placeholder="Masukkan email aktif" required autocomplete="email">
+        </div>
+        
+        <div class="form-group">
+          <label for="outlet">Kode Outlet</label>
+          <input type="text" id="outlet" placeholder="Contoh: BDO001A" required pattern="[A-Za-z]{3}[0-9]{3}[A-Za-z]{1}" title="Wajib 3 Huruf, 3 Angka, 1 Huruf (Contoh: BDO001A)" style="text-transform: uppercase;">
+        </div>
+
+        <button type="submit" id="submitButton" class="btn-primary" style="margin-top: 10px;">
+          DAFTAR SEKARANG
+        </button>
+      </form>
+    </div>
+
+    <div id="successSection" class="section-container">
+      <div class="success-box">
+        <div class="success-icon">✅</div>
+        <div class="success-title">Registrasi Berhasil!</div>
+        <div class="success-desc">
+          QR Code undangan telah dikirim ke email Anda.<br>
+          Silakan periksa kotak masuk (inbox) atau folder spam.
+        </div>
+      </div>
+    </div>
+
+    <div class="footer" id="footerText">
+      &copy; J&T Cargo 5th Anniversary System
+    </div>
+  </div>
+
+<script>
+  const landingSection = document.getElementById("landingSection");
+  const formSection = document.getElementById("formSection");
+  const successSection = document.getElementById("successSection");
+  const footerText = document.getElementById("footerText");
+  
+  document.getElementById("btnGoToForm").addEventListener("click", function() {
+    landingSection.classList.remove("active");
+    formSection.classList.add("active");
+    footerText.style.display = "none"; 
+  });
+
+  document.getElementById("btnBackToLanding").addEventListener("click", function() {
+    formSection.classList.remove("active");
+    landingSection.classList.add("active");
+    footerText.style.display = "block";
+  });
+
+  document.getElementById("registrationForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const outlet = document.getElementById("outlet").value.trim();
+
+    const button = document.getElementById("submitButton");
+    const errorBox = document.getElementById("errorBox");
+    
+    const outletRegex = /^[A-Za-z]{3}\d{3}[A-Za-z]{1}$/;
+    if (!outletRegex.test(outlet)) {
+      errorBox.innerText = "Format Kode Outlet tidak valid. Contoh: BDO001A";
+      errorBox.style.display = "block";
+      return;
+    }
+
+    button.disabled = true;
+    button.innerText = "MEMPROSES...";
+    errorBox.style.display = "none";
+
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbxjUje0qMfh2yJcS0F4od1Ojomn1-NZ4A5vvds21OPLCrB3ILeIUDPoFYjhvLezSJbxmg/exec";
+
+    const payload = {
+      action: "register",
+      name: name,
+      email: email,
+      outlet: outlet
+    };
+
+    fetch(webAppUrl, {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "text/plain;charset=utf-8"
+      }
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result && result.success) {
+          formSection.classList.remove("active");
+          successSection.classList.add("active");
+        } else {
+          button.disabled = false;
+          button.innerText = "DAFTAR SEKARANG";
+          errorBox.innerText = (result && result.message) ? result.message : "Terjadi kesalahan.";
+          errorBox.style.display = "block";
+        }
+    })
+    .catch(err => {
+        button.disabled = false;
+        button.innerText = "DAFTAR SEKARANG";
+        errorBox.innerText = "Gagal terhubung ke server.";
+        errorBox.style.display = "block";
+    });
+  });
+</script>
+
+</body>
+</html>
