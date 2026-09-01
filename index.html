@@ -52,7 +52,7 @@
       <div class="form-header-subtitle">Silakan lengkapi data berikut untuk mendapatkan QR Code undangan.</div>
       <div id="errorBox" class="alert-error"></div>
 
-      <form id="registrationForm">
+      <form id="registrationForm" autocomplete="off">
         <div class="form-group">
           <label for="name">Nama Lengkap</label>
           <input type="text" id="name" placeholder="Masukkan nama lengkap" required autocomplete="name">
@@ -66,7 +66,7 @@
         <div id="outletContainer">
           <div class="form-group outlet-group">
             <label>Kode Outlet</label>
-            <input type="text" class="outlet-input" placeholder="Contoh: BDO001A" required pattern="[A-Za-z]{3}[0-9]{3}[A-Za-z]{1}" title="Wajib 3 Huruf, 3 Angka, 1 Huruf (Contoh: BDO001A)" style="text-transform: uppercase;">
+            <input type="text" class="outlet-input" placeholder="Contoh: BDO001A" required pattern="[A-Za-z]{3}[0-9]{3}[A-Za-z]{1}" title="Wajib 3 Huruf, 3 Angka, 1 Huruf (Contoh: BDO001A)" style="text-transform: uppercase;" autocomplete="off">
           </div>
         </div>
         
@@ -112,8 +112,8 @@
     footerText.style.display = "block";
   });
 
-  // Fungsi Tambah Outlet Dinamis
   document.getElementById("btnAddOutlet").addEventListener("click", () => {
+    const uniqueId = "outlet_" + Date.now();
     const group = document.createElement("div");
     group.className = "form-group outlet-group";
     group.innerHTML = `
@@ -121,7 +121,7 @@
         <label style="margin-bottom:0;">Kode Outlet Tambahan</label>
         <button type="button" class="btn-remove-outlet" style="background:none; border:none; color:#DC2626; font-size:12px; font-weight:bold; cursor:pointer;">Hapus</button>
       </div>
-      <input type="text" class="outlet-input" placeholder="Contoh: BDO002A" required pattern="[A-Za-z]{3}[0-9]{3}[A-Za-z]{1}" title="Wajib 3 Huruf, 3 Angka, 1 Huruf (Contoh: BDO001A)" style="text-transform: uppercase;">
+      <input type="text" id="${uniqueId}" name="${uniqueId}" class="outlet-input" placeholder="Contoh: BDO002A" required pattern="[A-Za-z]{3}[0-9]{3}[A-Za-z]{1}" title="Wajib 3 Huruf, 3 Angka, 1 Huruf (Contoh: BDO001A)" style="text-transform: uppercase;" autocomplete="new-password">
     `;
     outletContainer.appendChild(group);
     
@@ -135,7 +135,6 @@
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
     
-    // Ambil seluruh input outlet dan validasi
     const outletInputs = document.querySelectorAll(".outlet-input");
     const outlets = [];
     let isValid = true;
@@ -165,7 +164,6 @@
     
     const webAppUrl = "https://script.google.com/macros/s/AKfycbxjUje0qMfh2yJcS0F4od1Ojomn1-NZ4A5vvds21OPLCrB3ILeIUDPoFYjhvLezSJbxmg/exec";
     
-    // Kirim sebagai array outlets
     const payload = { 
       action: "register", 
       name: name, 
