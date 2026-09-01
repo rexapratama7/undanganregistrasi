@@ -8,163 +8,324 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
-    :root { --jt-green: #00A651; --jt-green-hover: #008a43; --text-dark: #1A202C; --text-gray: #64748B; --bg-color: #FAFAFA; }
-    html, body { width: 100% !important; min-height: 100vh !important; margin: 0 !important; padding: 0 !important; background-color: var(--bg-color) !important; font-family: "Plus Jakarta Sans", sans-serif; -webkit-tap-highlight-color: transparent; }
+    :root {
+      --jt-green: #00A651;
+      --jt-green-hover: #008a43;
+      --text-dark: #1A202C;
+      --text-gray: #64748B;
+      --bg-color: #FAFAFA;
+    }
+
+    html, body {
+      width: 100% !important;
+      min-height: 100vh !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      background-color: var(--bg-color) !important;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
     * { box-sizing: border-box; }
-    .app-wrapper { width: 100%; max-width: 500px; margin: 0 auto; background: #FFFFFF; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); position: relative; }
-    .section-container { display: none; padding: 16px 20px; animation: fadeIn 0.3s ease-in-out; }
-    .section-container.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .poster-img { width: 100%; border-radius: 12px; display: block; margin-bottom: 24px; }
-    .instruction-text { font-size: 15px; font-weight: 600; color: var(--text-dark); text-align: center; margin-bottom: 16px; }
-    .header-back { margin-bottom: 24px; display: flex; align-items: center; }
-    .btn-back { background: none; border: none; font-size: 14px; font-weight: 600; cursor: pointer; padding: 0; display: flex; align-items: center; gap: 6px; color: var(--text-gray); }
-    .form-header-title { font-size: 24px; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; }
-    .form-header-subtitle { font-size: 14px; color: var(--text-gray); line-height: 1.5; margin-bottom: 28px; }
-    .form-group { margin-bottom: 20px; }
-    .form-group label { display: block; font-size: 14px; font-weight: 700; color: var(--text-dark); margin-bottom: 8px; }
-    .form-group input { width: 100%; height: 52px; padding: 0 16px; border: 1px solid #E2E8F0; border-radius: 10px; font-size: 15px; font-weight: 500; outline: none; transition: all 0.2s; background: #FFFFFF; color: var(--text-dark); }
-    .form-group input::placeholder { color: #94A3B8; font-weight: 400; }
-    .form-group input:focus { border-color: var(--jt-green); box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1); }
-    .btn-primary { width: 100%; height: 54px; background: var(--jt-green); color: #FFFFFF; border: none; border-radius: 10px; font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0, 166, 81, 0.2); margin-top: 10px; }
-    .btn-primary:active { transform: translateY(2px); }
-    .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; }
-    .btn-add-outlet { width: 100%; padding: 12px; background: transparent; border: 1.5px dashed var(--jt-green); color: var(--jt-green); font-weight: 700; border-radius: 8px; cursor: pointer; margin-bottom: 20px; transition: 0.2s; }
-    .btn-add-outlet:active { background: rgba(0, 166, 81, 0.1); }
-    .error-box { display: none; background: #FEF2F2; color: #DC2626; padding: 12px 16px; border-radius: 10px; font-size: 14px; font-weight: 500; margin-bottom: 20px; border: 1px solid #FECACA; }
-    .success-container { text-align: center; padding: 40px 20px; }
+
+    .app-wrapper {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      min-height: 100vh;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    .section-container {
+      display: none;
+      padding: 16px 20px;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    
+    .section-container.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .poster-img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      margin-bottom: 24px;
+    }
+    .instruction-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    
+    .header-back {
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+    }
+    .btn-back {
+      background: none;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-gray);
+    }
+    .form-header-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .form-header-subtitle {
+      font-size: 14px;
+      color: var(--text-gray);
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .form-group input {
+      width: 100%;
+      height: 52px;
+      padding: 0 16px;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      outline: none;
+      transition: all 0.2s;
+      background: #FFFFFF;
+      color: var(--text-dark);
+    }
+    .form-group input::placeholder {
+      color: #94A3B8;
+      font-weight: 400;
+    }
+    .form-group input:focus {
+      border-color: var(--jt-green);
+      box-shadow: 0 0 0 3px rgba(0, 166, 81, 0.1);
+    }
+
+    .btn-primary {
+      width: 100%;
+      height: 54px;
+      background: var(--jt-green);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.2s;
+    }
+    .btn-primary:active {
+      transform: scale(0.98);
+      background: var(--jt-green-hover);
+    }
+    .btn-primary:disabled {
+      background: #CBD5E1;
+      cursor: not-allowed;
+    }
+
+    .alert-error {
+      display: none;
+      background: #FEF2F2;
+      color: #DC2626;
+      border: 1px solid #FCA5A5;
+      padding: 14px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .success-box {
+      text-align: center;
+      padding: 40px 20px;
+    }
     .success-icon { font-size: 60px; margin-bottom: 16px; }
     .success-title { font-size: 22px; font-weight: 800; color: var(--text-dark); margin-bottom: 10px; }
     .success-desc { font-size: 15px; color: var(--text-gray); line-height: 1.5; }
-    .footer { text-align: center; padding: 20px 0; font-size: 12px; color: #CBD5E1; position: absolute; bottom: 0; width: 100%; }
+    
+    .footer {
+      text-align: center;
+      padding: 20px 0;
+      font-size: 12px;
+      color: #CBD5E1;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
   </style>
 </head>
 <body>
 
   <div class="app-wrapper">
-    <div id="posterSection" class="section-container active">
-      <img src="https://i.ibb.co.com/gMVkGsvs/Poster-Event-Jabar.png" alt="Poster Event" class="poster-img">
-      <div class="instruction-text">Silahkan Registrasi pada Halaman Berikut</div>
-      <button onclick="goToForm()" class="btn-primary">LANJUT REGISTRASI</button>
+    
+    <div id="landingSection" class="section-container active">
+      <img class="poster-img" src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/creative-business-poster-design-template-cc567da44d08d151c7b10dda2844ca97_screen.jpg?ts=1737502680" alt="Poster Event J&T">
+      
+      <div class="instruction-text">
+        Peserta wajib mengisi form registrasi di bawah ini
+      </div>
+      
+      <button type="button" id="btnGoToForm" class="btn-primary">
+        Lanjut ke Registrasi &rarr;
+      </button>
     </div>
 
     <div id="formSection" class="section-container">
       <div class="header-back">
-        <button onclick="goToPoster()" class="btn-back">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-          Kembali
+        <button type="button" id="btnBackToLanding" class="btn-back">
+          &larr; Kembali
         </button>
       </div>
-      
-      <h1 class="form-header-title">Registrasi Kehadiran</h1>
-      <p class="form-header-subtitle">Lengkapi data diri Anda di bawah ini untuk mendapatkan QR Code undangan.</p>
 
-      <div id="errorBox" class="error-box"></div>
+      <div class="form-header-title">Registrasi Kehadiran</div>
+      <div class="form-header-subtitle">Silakan lengkapi data berikut untuk mendapatkan QR Code undangan.</div>
 
-      <div class="form-group">
-        <label for="name">NAMA LENGKAP</label>
-        <input type="text" id="name" placeholder="Masukkan nama lengkap Anda" required>
-      </div>
+      <div id="errorBox" class="alert-error"></div>
 
-      <div class="form-group">
-        <label for="email">ALAMAT EMAIL</label>
-        <input type="email" id="email" placeholder="Masukkan alamat email aktif" required>
-      </div>
+      <form id="registrationForm">
+        <div class="form-group">
+          <label for="name">Nama Lengkap</label>
+          <input type="text" id="name" placeholder="Masukkan nama lengkap" required autocomplete="name">
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Alamat Email</label>
+          <input type="email" id="email" placeholder="Masukkan email aktif" required autocomplete="email">
+        </div>
+        
+        <div class="form-group">
+          <label for="outlet">Kode Outlet</label>
+          <input type="text" id="outlet" placeholder="Contoh: BDO001A" required pattern="[A-Za-z]{3}[0-9]{3}[A-Za-z]{1}" title="Wajib 3 Huruf, 3 Angka, 1 Huruf (Contoh: BDO001A)" style="text-transform: uppercase;">
+        </div>
 
-      <div class="form-group" id="outletContainer">
-        <label>KODE OUTLET</label>
-        <input type="text" class="outlet-input" placeholder="Contoh: BDO001A" required>
-      </div>
-      <p style="font-size: 13px; color: var(--text-gray); margin-top: -12px; margin-bottom: 12px;">Jika mewakili lebih dari 1 outlet, klik tombol dibawah.</p>
-      <button type="button" onclick="addOutletField()" class="btn-add-outlet">+ TAMBAH KODE OUTLET</button>
-
-      <button id="submitBtn" onclick="submitForm()" class="btn-primary">DAFTAR SEKARANG</button>
+        <button type="submit" id="submitButton" class="btn-primary" style="margin-top: 10px;">
+          DAFTAR SEKARANG
+        </button>
+      </form>
     </div>
 
-    <div id="successSection" class="section-container" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: absolute; top: 0; width: 100%; background: #fff;">
-      <div class="success-container">
+    <div id="successSection" class="section-container">
+      <div class="success-box">
         <div class="success-icon">✅</div>
-        <h2 class="success-title">Registrasi Berhasil!</h2>
-        <p class="success-desc">Terima kasih telah mendaftar.<br>QR Code undangan telah dikirimkan ke alamat email Anda. Harap tunjukkan QR Code tersebut saat melakukan check-in di lokasi acara.</p>
+        <div class="success-title">Registrasi Berhasil!</div>
+        <div class="success-desc">
+          QR Code undangan telah dikirim ke email Anda.<br>
+          Silakan periksa kotak masuk (inbox) atau folder spam.
+        </div>
       </div>
     </div>
-    <div class="footer" style="position: relative; padding-bottom: 30px;">&copy; 2025 J&T Cargo Jawa Barat</div>
+
+    <div class="footer" id="footerText">
+      &copy; J&T Cargo 5th Anniversary System
+    </div>
   </div>
 
-  <script>
-    const posterSection = document.getElementById("posterSection");
-    const formSection = document.getElementById("formSection");
-    const successSection = document.getElementById("successSection");
+<script>
+  const landingSection = document.getElementById("landingSection");
+  const formSection = document.getElementById("formSection");
+  const successSection = document.getElementById("successSection");
+  const footerText = document.getElementById("footerText");
+  
+  document.getElementById("btnGoToForm").addEventListener("click", function() {
+    landingSection.classList.remove("active");
+    formSection.classList.add("active");
+    footerText.style.display = "none"; 
+  });
+
+  document.getElementById("btnBackToLanding").addEventListener("click", function() {
+    formSection.classList.remove("active");
+    landingSection.classList.add("active");
+    footerText.style.display = "block";
+  });
+
+  document.getElementById("registrationForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const outlet = document.getElementById("outlet").value.trim();
+
+    const button = document.getElementById("submitButton");
     const errorBox = document.getElementById("errorBox");
-
-    function goToForm() { posterSection.classList.remove("active"); formSection.classList.add("active"); }
-    function goToPoster() { formSection.classList.remove("active"); posterSection.classList.add("active"); errorBox.style.display = "none"; }
-
-    let outletCount = 1;
-    function addOutletField() {
-      outletCount++;
-      const container = document.getElementById("outletContainer");
-      const input = document.createElement("input");
-      input.type = "text";
-      input.className = "outlet-input";
-      input.placeholder = "Kode Outlet ke-" + outletCount + " (Contoh: BDO002A)";
-      input.style.marginTop = "12px";
-      input.required = true;
-      container.appendChild(input);
+    
+    const outletRegex = /^[A-Za-z]{3}\d{3}[A-Za-z]{1}$/;
+    if (!outletRegex.test(outlet)) {
+      errorBox.innerText = "Format Kode Outlet tidak valid. Contoh: BDO001A";
+      errorBox.style.display = "block";
+      return;
     }
 
-    function submitForm() {
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const button = document.getElementById("submitBtn");
-      errorBox.style.display = "none";
+    button.disabled = true;
+    button.innerText = "MEMPROSES...";
+    errorBox.style.display = "none";
 
-      if (!name || !email) { errorBox.innerText = "Nama dan Email wajib diisi!"; errorBox.style.display = "block"; return; }
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) { errorBox.innerText = "Format email tidak valid!"; errorBox.style.display = "block"; return; }
+    const webAppUrl = "https://script.google.com/macros/s/AKfycbxjUje0qMfh2yJcS0F4od1Ojomn1-NZ4A5vvds21OPLCrB3ILeIUDPoFYjhvLezSJbxmg/exec";
 
-      const outletInputs = document.querySelectorAll('.outlet-input');
-      let outlets = [];
-      let outletValid = true;
-      const outletRegex = /^[A-Z]{3}\d{3}[A-Z]{1}$/i;
-      
-      outletInputs.forEach(input => {
-        let val = input.value.trim().toUpperCase();
-        if(val) {
-          if(!outletRegex.test(val)) outletValid = false;
-          outlets.push(val);
-        }
-      });
+    const payload = {
+      action: "register",
+      name: name,
+      email: email,
+      outlet: outlet
+    };
 
-      if (!outletValid) { errorBox.innerText = "Format Kode Outlet tidak valid. Contoh: BDO001A"; errorBox.style.display = "block"; return; }
-      if (outlets.length === 0) { errorBox.innerText = "Mohon isi minimal 1 Kode Outlet."; errorBox.style.display = "block"; return; }
-
-      button.disabled = true; button.innerText = "MEMPROSES...";
-      const webAppUrl = "https://script.google.com/macros/s/AKfycbxjUje0qMfh2yJcS0F4od1Ojomn1-NZ4A5vvds21OPLCrB3ILeIUDPoFYjhvLezSJbxmg/exec";
-
-      const payload = { action: "register", name: name, email: email, outlet: outlets };
-
-      fetch(webAppUrl, {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: { Accept: "application/json", "Content-Type": "text/plain;charset=utf-8" }
-      })
-      .then(response => response.json())
-      .then(result => {
-          if (result && result.success) {
-            formSection.classList.remove("active"); successSection.classList.add("active");
-          } else {
-            button.disabled = false; button.innerText = "DAFTAR SEKARANG";
-            errorBox.innerText = result.message || "Terjadi kesalahan, silahkan coba lagi.";
-            errorBox.style.display = "block";
-          }
-      })
-      .catch(error => {
-          button.disabled = false; button.innerText = "DAFTAR SEKARANG";
-          errorBox.innerText = "Gagal terhubung ke server. Pastikan koneksi internet stabil.";
+    fetch(webAppUrl, {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "text/plain;charset=utf-8"
+      }
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result && result.success) {
+          formSection.classList.remove("active");
+          successSection.classList.add("active");
+        } else {
+          button.disabled = false;
+          button.innerText = "DAFTAR SEKARANG";
+          errorBox.innerText = (result && result.message) ? result.message : "Terjadi kesalahan.";
           errorBox.style.display = "block";
-      });
-    }
-  </script>
+        }
+    })
+    .catch(err => {
+        button.disabled = false;
+        button.innerText = "DAFTAR SEKARANG";
+        errorBox.innerText = "Gagal terhubung ke server.";
+        errorBox.style.display = "block";
+    });
+  });
+</script>
+
 </body>
 </html>
