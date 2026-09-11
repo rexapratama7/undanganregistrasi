@@ -11,7 +11,7 @@
     :root { --jt-green: #00A651; --jt-green-hover: #008a43; --text-dark: #1A202C; --text-gray: #64748B; --bg-color: #FAFAFA; }
     html, body { width: 100% !important; min-height: 100vh !important; margin: 0 !important; padding: 0 !important; background-color: var(--bg-color) !important; font-family: "Plus Jakarta Sans", sans-serif; -webkit-tap-highlight-color: transparent; }
     * { box-sizing: border-box; }
-    .app-wrapper { width: 100%; max-width: 500px; margin: 0 auto; background: #FFFFFF; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); position: relative; padding-bottom: 30px}
+    .app-wrapper { width: 100%; max-width: 500px; margin: 0 auto; background: #FFFFFF; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); position: relative; }
     .section-container { display: none; padding: 16px 20px; animation: fadeIn 0.3s ease-in-out; }
     .section-container.active { display: block; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -80,7 +80,7 @@
           </div>
         </div>
         
-        <div style="font-size: 13px; color: var(--text-gray); margin-top: -10px; margin-bottom: 12px;">
+        <div id="addOutletHelper" style="font-size: 13px; color: var(--text-gray); margin-top: -10px; margin-bottom: 12px;">
           *Jika mewakili lebih dari 1 outlet/toko, klik tombol di bawah.
         </div>
         
@@ -130,8 +130,27 @@
   // Fungsi untuk Update Tampilan Dinamis Berdasarkan Tipe Peserta
   function updateOutletLabels() {
     const role = roleSelect.value;
-    const groups = document.querySelectorAll(".outlet-group");
+    let groups = document.querySelectorAll(".outlet-group");
+    const btnAddOutlet = document.getElementById("btnAddOutlet");
+    const addOutletHelper = document.getElementById("addOutletHelper");
     
+    // Logika Sembunyikan Tombol Tambah Outlet
+    if (role === "Kurir/Sprinter" || role === "Seller") {
+      btnAddOutlet.style.display = "none";
+      if(addOutletHelper) addOutletHelper.style.display = "none";
+      
+      // Hapus kolom tambahan jika user sebelumnya sudah telanjur menambah lebih dari 1
+      groups.forEach((group, index) => {
+        if (index > 0) group.remove();
+      });
+      // Perbarui NodeList setelah penghapusan
+      groups = document.querySelectorAll(".outlet-group");
+    } else {
+      btnAddOutlet.style.display = "block";
+      if(addOutletHelper) addOutletHelper.style.display = "block";
+    }
+    
+    // Logika Ganti Label & Validasi
     groups.forEach((group, index) => {
       const label = group.querySelector("label");
       const input = group.querySelector(".outlet-input");
